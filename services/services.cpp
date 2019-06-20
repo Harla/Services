@@ -61,6 +61,9 @@ int main(int argc, CHAR* argv[])
 		};
 
 		//Start Service Control Dispatcher
+		//Connects the main thread of a service process to the service control manager,
+		//which causes the thread to be the service control dispatcher thread for 
+		//the calling process
 		bStServiceCtrlDispatcher = StartServiceCtrlDispatcher(DispatchTable);
 		if(FALSE == bStServiceCtrlDispatcher)
 		{
