@@ -104,9 +104,14 @@ void WINAPI ServiceMain(DWORD dwArgc, LPTSTR* lpArgv)
 	//Step-3->Call service report status for notifying initial setup
 	ServiceReportStatus(SERVICE_START_PENDING, NO_ERROR, 3000);
 								//Time			
-	//Check the Service Status
+	//Step-4->Check the Service Status
+			//Updates the service control manager's status information for the calling service.
 	bServiceStatus = SetServiceStatus(hServiceStatusHandle, &ServiceStatus);
-
+					//^			    //^
+					//|			    //|
+					//|  //A pointer to the SERVICE_STATUS structure the contains the latest status information for the calling service
+				//A handle to the status information structure for the current service.
+				//This handle is returned by the RegisterServiceCtrlHandlerEx function
 	if (FALSE == bServiceStatus)
 	{
 		cout << "Service Status initial setup FAILED\n";
