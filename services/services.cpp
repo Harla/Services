@@ -5,7 +5,8 @@
 #include<Windows.h>
 using namespace std;
 #define SERVICE_NAME TEXT("ASP Service") //Service Name
-SERVICE_STATUS ServiceStatus = { 0 }; //Service Status Structure
+SERVICE_STATUS ServiceStatus = { 0 }; //Service Status Structure 
+				      //Stores all information about the service
 SERVICE_STATUS_HANDLE hServiceStatusHandle = NULL;//Service Status Handle to Register the Service
 HANDLE hServiceEvent = NULL;//Event Handle for Service
 
