@@ -84,7 +84,7 @@ void WINAPI ServiceMain(DWORD dwArgc, LPTSTR* lpArgv)
 	cout << "Service Main Start\n";
 	//Local Variable definition
 	BOOL bServiceStatus = FALSE;
-		//Registering Service Control Handler Function to SCM
+		//Step-1->Registering Service Control Handler Function to SCM
 	//RegisterServiceCtrlHandler should be the first nonfailing function in ServiceMain 
 	//so the service can use the status handle returned by this function to call SetServiceStatus 
 	//with the SERVICE_STOPPED state if an error occurs.
@@ -97,13 +97,13 @@ void WINAPI ServiceMain(DWORD dwArgc, LPTSTR* lpArgv)
 		cout << "RegisterServiceCtrlHandler Failed " << GetLastError() << "\n";
 	else
 		cout << "RegisterServiceCtrlHandler Success " << GetLastError() << "\n";
-	//Service Status initial setup
+	// Step-2->Service Status initial setup
 	ServiceStatus.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
-	ServiceStatus.dwServiceSpecificExitCode = 0;
+	ServiceStatus.dwServiceSpecificExitCode = 0;// error code the service uses to report an error that occurs when it is starting or stopping
 
-	//Call service report status for notifying initial setup
+	//Step-3->Call service report status for notifying initial setup
 	ServiceReportStatus(SERVICE_START_PENDING, NO_ERROR, 3000);
-
+								//Time			
 	//Check the Service Status
 	bServiceStatus = SetServiceStatus(hServiceStatusHandle, &ServiceStatus);
 
