@@ -88,10 +88,11 @@ void WINAPI ServiceMain(DWORD dwArgc, LPTSTR* lpArgv)
 	//RegisterServiceCtrlHandler should be the first nonfailing function in ServiceMain 
 	//so the service can use the status handle returned by this function to call SetServiceStatus 
 	//with the SERVICE_STOPPED state if an error occurs.
+									//A pointer to the handler function to be registered
 	hServiceStatusHandle = RegisterServiceCtrlHandler(SERVICE_NAME, ServiceControlHandler);
-
-
-
+	//Registers a function to handle service control requests.
+	//If the function succeeds, the return value is a service status handle.
+	//If the function fails, the return value is zero.
 	if (NULL == hServiceStatusHandle)
 		cout << "RegisterServiceCtrlHandler Failed " << GetLastError() << "\n";
 	else
