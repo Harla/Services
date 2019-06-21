@@ -85,6 +85,9 @@ void WINAPI ServiceMain(DWORD dwArgc, LPTSTR* lpArgv)
 	//Local Variable definition
 	BOOL bServiceStatus = FALSE;
 		//Registering Service Control Handler Function to SCM
+	//RegisterServiceCtrlHandler should be the first nonfailing function in ServiceMain 
+	//so the service can use the status handle returned by this function to call SetServiceStatus 
+	//with the SERVICE_STOPPED state if an error occurs.
 	hServiceStatusHandle = RegisterServiceCtrlHandler(SERVICE_NAME, ServiceControlHandler);
 
 
